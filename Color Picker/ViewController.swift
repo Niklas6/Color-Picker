@@ -10,16 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+
     private let dataSource = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"]
+    private let color = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.purple]
     @IBOutlet weak var Pickerview: UIPickerView!
     
     @IBOutlet weak var Label: UILabel!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         Pickerview.dataSource = self
         Pickerview.delegate = self
+        self.view.backgroundColor = UIColor.red
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -27,6 +30,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -37,9 +41,14 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         Label.text = dataSource[row]
+        self.view.backgroundColor = color[row]
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return dataSource[row]
+        
+        
     }
+    
 }
